@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DataBarang;
+use App\Models\galery;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -13,15 +15,21 @@ class EcomController extends Controller
 {
     public function index()
     {
+        $data = new DataBarang;
         return view('ecommers.beranda', [
             'title' => 'Beranda',
+            'allProduct' => $data::all(),
+            'promosi' => $data::where('qty_keluar','<', 110)->where('qty_keluar', '>', 50)->get(),
+            'new' => $data::where('qty_keluar','<', 10)->get(),
         ]);
     }
     public function galery()
     {
+        $data = new galery;
         return view('ecommers.galery', [
             'title' => 'Galery',
-            'name'  => 'Galery'
+            'name'  => 'Galery',
+            'data'  => $data::where('name','Galery')->get()  
         ]);
     }
     public function kontakKami()
@@ -33,9 +41,11 @@ class EcomController extends Controller
     }
     public function karir()
     {
+        $data = new galery;
         return view('ecommers.karir', [
             'title' => 'Karir',
-            'name'  => 'Karir'
+            'name'  => 'Karir',
+            'data'  => $data::where('name','Loker')->get()
         ]);
     }
     public function store(Request $request)

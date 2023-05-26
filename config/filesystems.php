@@ -56,6 +56,23 @@ return [
             'throw' => false,
         ],
 
+        'public_photos' => [
+            'driver' => 'local',
+            'root' => public_path('assets/images/product'),
+            'url' => env('APP_URL') . 'assets/images/product',
+            'visibility' => 'public',
+        ], [
+            'driver' => 'local',
+            'root' => public_path('assets/images/user'),
+            'url' => env('APP_URL') . 'assets/images/user',
+            'visibility' => 'public',
+        ], [
+            'driver' => 'local',
+            'root' => public_path('assets/images/galery'),
+            'url' => env('APP_URL') . 'assets/images/galery',
+            'visibility' => 'public',
+        ]
+
     ],
 
     /*

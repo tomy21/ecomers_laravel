@@ -18,7 +18,7 @@
     <div class="container m-auto">
         <h2 class="text-center m-4">{{ $name }}</h2>
 
-        <form action="{{ route('admin.login') }}" method="post">
+        <form action="{{ route('admin.proseslogin') }}" method="post">
             @csrf
             <div class="card p-4 m-auto" style="width:30vw">
                 @if (session('error'))

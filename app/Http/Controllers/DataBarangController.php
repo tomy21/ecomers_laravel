@@ -7,6 +7,7 @@ use App\Http\Requests\StoredataBarangRequest;
 use App\Http\Requests\UpdatedataBarangRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\JsonResponse;
+use Alert;
 
 class DataBarangController extends Controller
 {
@@ -31,36 +32,40 @@ class DataBarangController extends Controller
      */
     public function store(StoredataBarangRequest $request)
     {
-        $validasi               = Validator::make($request->all(), [
+        $validasi           = Validator::make($request->all(), [
             'sku'           => 'required',
             'nama_barang'   => 'required',
             'stock_bagus'   => 'required',
             'stock_rusak'   => 'required',
             'harga_barang'  => 'required',
             'qty_keluar'    => 'required',
-            // 'file'          => 'mimes:jpg,png,jpeg|images|max:2048'
-        ], [
-            'sku.required'           => 'SKU wajib diisi',
-            'nama_barang.required'   => 'Nama Barang wajib diisi',
-            'stock_bagus.required'   => 'Stock Bagus wajib diisi',
-            'stock_rusak.required'   => 'Stock Rusak wajib diisi',
-            'harga_barang.required'  => 'Harga Barang wajib diisi',
-            'qty_keluar.required'    => 'Qty Keluar wajib diisi',
+            'image'          => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         if ($validasi->fails()) {
-            return response()->json(['errors' => $validasi->errors()]);
+            // dd($validasi->errors());die;
+            Alert::toast('Data tidak sesuai, periksa kembali inputannya', 'error');
+            return redirect()->route('admin.dataBarang');
         } else {
             $data = new DataBarang;
+            
             $data->sku            = $request->sku;
             $data->nama_barang    = $request->nama_barang;
             $data->stock_bagus    = $request->stock_bagus;
             $data->stock_rusak    = $request->stock_rusak;
             $data->harga_barang   = $request->harga_barang;
             $data->qty_keluar     = $request->qty_keluar;
-            $data->images         = 'default.png';
+            if ($request->hasFile('image')) {
+                $photo = $request->file('image');
+                $filename = time() . '.' . $photo->getClientOriginalExtension();
+                $photo->move(public_path('assets/images/product'), $filename);
+                $data->images = $filename;
+            }
+
             $data->save();
-            return response()->json(['success' => "Data berhasil diinput"], 200);
+            Alert::toast('Data berhasil diinput !', 'success');
+            return redirect()->route('admin.dataBarang');
+            // return response()->json(['success' => "Data berhasil diinput"], 200);
                         
         }
     }
@@ -110,7 +115,6 @@ class DataBarangController extends Controller
             'stock_rusak_up'   => 'required',
             'harga_barang_up'  => 'required',
             'qty_keluar_up'    => 'required',
-            'file_up'          => 'required'
         ], [
             'sku_up.required'           => 'SKU wajib diisi',
             'nama_barang_up.required'   => 'Nama Barang wajib diisi',
@@ -118,7 +122,6 @@ class DataBarangController extends Controller
             'stock_rusak_up.required'   => 'Stock Rusak wajib diisi',
             'harga_barang_up.required'  => 'Harga Barang wajib diisi',
             'qty_keluar_up.required'    => 'Qty Keluar wajib diisi',
-            'file_up.required'          => 'File wajib diisi'
         ]);
 
         if ($validasi->fails()) {
@@ -132,10 +135,7 @@ class DataBarangController extends Controller
                 'stock_rusak'    => $request->stock_rusak_up,
                 'harga_barang'   => $request->harga_barang_up,
                 'qty_keluar'     => $request->qty_keluar_up,
-                'images'         => $request->file_up,
             ];
-            // var_dump($field);die;
-            // dd($data->where('id', $id)->first());die;
             $data->where('id', $id)->update($field);
             return response()->json(['success' => "Data berhasil diupdate"]);
         }

@@ -4,42 +4,18 @@
     <div class="galery">
         <h3>{{ $name }}</h3>
         <div class="card-galery-list">
-            <div class="card-galery">
-                <div class="card-image">
-                    <img src="" alt="">
+            @foreach ($data as $x)
+                <div class="card-galery">
+                    <div class="card-image">
+                        <img src="{{ asset('assets/images/galery/' . $x->image . '') }}" style="width:100%;border-radius:20px;"
+                            alt="">
+                    </div>
+                    <div class="card-title">
+                        <p>{{ $x->desc }}</p>
+                    </div>
                 </div>
-                <div class="card-title">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed qui temporibus eius provident nostrum
-                        debitis incidunt!</p>
-                </div>
-            </div>
-            <div class="card-galery">
-                <div class="card-image">
-                    <img src="" alt="">
-                </div>
-                <div class="card-title">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed qui temporibus eius provident nostrum
-                        debitis incidunt!</p>
-                </div>
-            </div>
-            <div class="card-galery">
-                <div class="card-image">
-                    <img src="" alt="">
-                </div>
-                <div class="card-title">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed qui temporibus eius provident nostrum
-                        debitis incidunt!</p>
-                </div>
-            </div>
-            <div class="card-galery">
-                <div class="card-image">
-                    <img src="" alt="">
-                </div>
-                <div class="card-title">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed qui temporibus eius provident nostrum
-                        debitis incidunt!</p>
-                </div>
-            </div>
+            @endforeach
+
         </div>
     </div>
 @endsection

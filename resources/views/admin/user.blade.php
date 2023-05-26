@@ -12,10 +12,12 @@
             </button>
             <table class="table w-100 table-bordered table-striped" id="example">
                 <thead>
-                    <tr style="font-weight: 700;">
+                    <tr style="font-weight: 700;" >
                         <td>No</td>
+                        <td>Foto</td>
                         <td>Id Karyawan</td>
                         <td>Nama Karyawan</td>
+                        <td>Email</td>
                         <td>Level</td>
                         <td>Status</td>
                         <td>Aksi</td>
@@ -23,10 +25,15 @@
                 </thead>
                 <tbody>
                     @foreach ($data as $y => $x)
-                        <tr>
+                        <tr class="align-middle text-center">
                             <td>{{ ++$y }}</td>
+                            <td>
+                                <img src="{{ asset('assets/images/user/' . $x->images . '') }}"
+                                    style="width:50px;border-radius:50%;" alt="">
+                            </td>
                             <td>{{ $x->id_mamber }}</td>
                             <td>{{ $x->name }}</td>
+                            <td>{{ $x->email }}</td>
                             <td>
                                 @if ($x->role == 1)
                                     Admin
@@ -37,17 +44,18 @@
                                 @endif
                             </td>
                             <td>
-                                @if ( $x->is_active == 1)
+                                @if ($x->is_active == 1)
                                     Active
-                                @else 
+                                @else
                                     Non Active
                                 @endif
                             </td>
                             <td>
-                                <button class="btn btn-info editDataKaryawan" id="editDataKaryawan" data-id="{{$x->id}}">
+                                <button class="btn btn-info editDataKaryawan" id="editDataKaryawan"
+                                    data-id="{{ $x->id }}">
                                     <i class="fa fa-edit"></i>
                                 </button>
-                                <button class="btn btn-danger" onclick="deleteDataKaryawan({{$x->id}})">
+                                <button class="btn btn-danger" onclick="deleteDataKaryawan({{ $x->id }})">
                                     <i class="fa fa-trash-alt"></i>
                                 </button>
                             </td>
@@ -58,6 +66,15 @@
         </div>
     </div>
 
-    <div class="tambahKaryawan" ></div>
+    @if (Session::has('success'))
+        Swal.fire({
+        icon: 'success',
+        title: 'Great!',
+        text: '{{ Session::get('success') }}'
+        })
+    @endif
+
+
+    <div class="tambahKaryawan"></div>
     @include('admin.modal.editKaryawan')
 @endsection

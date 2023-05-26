@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Admin || {{ $title }}</title>
-    <link href="{{ asset('build/assets/app-3ea8b221.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app-3ea8b221.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
         integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
@@ -21,6 +21,7 @@
 
 <body>
     <main>
+
         <div class="sidebar p-4" id="sidebar">
             <h4 class="mb-3 text-white text-center">PT. Jaya itu</h4>
             <hr class="text-white m-0 p-0">
@@ -73,6 +74,13 @@
                 </a>
             </li>
 
+            <li class="links {{ Request::path() === 'admin/galery' ? 'active' : '' }}">
+                <a class="text-white" href="galery">
+                    <i class="fas fa-images"></i>
+                    <span>Galery dan Loker</span>
+                </a>
+            </li>
+
             <li class="position-absolute" style="width: 75%;">
                 <hr class="text-white">
                 <a class="text-white" href="#menuDown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -86,10 +94,16 @@
                             <i class="fas fa-users"></i>
                             <span>Profil</span>
                         </a>
-                        <a href="/admin" class="nav-link" aria-current="page">
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                            class="nav-link" aria-current="page">
                             <i class="fas fa-sign-out-alt"></i>
                             <span>Keluar</span>
                         </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
             </li>
@@ -101,7 +115,7 @@
                 <i class="fas fa-bars"></i>
             </button>
             <div class="d-flex align-items-center  gap-3 p-0 justify-content-center">
-                <img src="{{ asset('assets/images/'.auth()->user()->images) }}" style="width:50px;border-radius:50%;"
+                <img src="{{ asset('assets/images/user/'. auth()->user()->images.'') }}" style="width:50px;border-radius:50%;"
                     alt="foto profil">
                 <div class="d-flex flex-column p-0">
                     <h6 style="margin:0;">{{ auth()->user()->name }}</h6>
@@ -109,12 +123,12 @@
                 </div>
             </div>
         </div>
-
+        @include('sweetalert::alert')
         @yield('content')
     </section>
 </body>
 </body>
-<script src="{{ asset('build/assets/app-d4b42df8.js') }}"></script>
+<script src="{{ asset('js/app-d4b42df8.js') }}"></script>
 <script src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
 {{-- <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script> --}}
 <script src="{{ asset('js/jqueryMigrate-1.2.1.min.js') }}"></script>

@@ -15,6 +15,7 @@
                 <thead>
                     <tr style="font-weight: 700;">
                         <td>No</td>
+                        <td>Foto Product</td>
                         <td>Code Barang</td>
                         <td>Nama Barang</td>
                         <td>Qty Barang</td>
@@ -25,18 +26,22 @@
                 </thead>
                 <tbody>
                     @foreach ($barang as $y => $x)
-                        <tr>
+                        <tr class="align-middle">
                             <td>{{ ++$y }}</td>
+                            <td class="text-center">
+                                <img src="{{ asset('assets/images/product/' . $x->images . '') }}"
+                                    style="width:50px;border-radius:50%;" class="text-center" alt="" srcset="">
+                            </td>
                             <td>{{ $x->sku }}</td>
                             <td>{{ $x->nama_barang }}</td>
                             <td>{{ $x->stock_bagus }}</td>
                             <td>{{ $x->qty_keluar }}</td>
                             <td>{{ $x->created_at }}</td>
                             <td>
-                                <button class="btn btn-info editData" data-id="{{$x->id}}">
+                                <button class="btn btn-info editData" data-id="{{ $x->id }}">
                                     <i class="fa fa-edit"></i>
                                 </button>
-                                <button class="btn btn-danger" onclick="deleteData({{$x->id}})">
+                                <button class="btn btn-danger" onclick="deleteData({{ $x->id }})">
                                     <i class="fa fa-trash-alt"></i>
                                 </button>
                             </td>

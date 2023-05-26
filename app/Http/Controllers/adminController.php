@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\DataBarang;
 use App\Models\User;
+use Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
@@ -70,32 +72,47 @@ class adminController extends Controller
     public function tambahKaryawan(Request $request)
     {
         $data = new User;
+        $request->validate([
+            'name'          => 'required',
+            'email'         => 'required|unique',
+            'password'      => 'required',
+            'tlp'           => 'required',
+            'jenisKelamin'  => 'required',
+            'status'        => 'required',
+            'wilayah'       => 'required',
+            'tgl_lahir'     => 'required',
+            'image'         => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-        if ($request->level == 1) {
-            $c = "admin - " . sprintf('%05d', random_int(0, 99999));
-        } else if ($request->level == 2) {
-            $c = "officer - " . sprintf('%05d', random_int(0, 99999));
-        } else {
-            $c = "manager - " . sprintf('%05d', random_int(0, 99999));
-        }
-        $data->id_mamber        = $c;
-        $data->name             = $request->name;
-        $data->email            = $request->email;
-        $data->password         = bcrypt($request->password);
-        $data->tlp              = $request->tlp;
-        $data->jenis_kelamin    = $request->jenisKelamin;
-        $data->status           = $request->status;
-        $data->wilayah          = $request->wilayah;
-        $data->tgl_lahir        = $request->tgl_lahir;
-        $data->is_admin         = 1;
-        $data->is_mamber        = false;
-        $data->role             = $request->level;
-        $data->images           = "default.png";
-        $data->save();
-
-        // dd(response()->json(['success' => "Data berhasil diinput"]));die();
-        // return response()->json(['success' => "Data berhasil diinput"],200);
-        return redirect()->route('admin.user')->json(['success' => "Data berhasil diinput"]);
+            if ($request->level == 1) {
+                $c = "admin - " . sprintf('%05d', random_int(0, 99999));
+            } else if ($request->level == 2) {
+                $c = "officer - " . sprintf('%05d', random_int(0, 99999));
+            } else {
+                $c = "manager - " . sprintf('%05d', random_int(0, 99999));
+            }
+            $data->id_mamber        = $c;
+            $data->name             = $request->name;
+            $data->email            = $request->email;
+            $data->password         = bcrypt($request->password);
+            $data->tlp              = $request->tlp;
+            $data->jenis_kelamin    = $request->jenisKelamin;
+            $data->status           = $request->status;
+            $data->wilayah          = $request->wilayah;
+            $data->tgl_lahir        = $request->tgl_lahir;
+            $data->is_admin         = 1;
+            $data->is_mamber        = false;
+            $data->role             = $request->level;
+            if ($request->hasFile('image')) {
+                $photo = $request->file('image');
+                $filename = time() . '.' . $photo->getClientOriginalExtension();
+                $photo->move(public_path('assets/images/user'), $filename);
+                $data->images = $filename;
+            }
+            $data->save();
+            Alert::toast('Data berhasil diinput !', 'success');
+            return redirect()->route('admin.user');
+        
     }
     public function editKaryawanModal($id)
     {
@@ -108,7 +125,7 @@ class adminController extends Controller
                     'id'        => $id,
                     'name'      => $dataBarang->name,
                     'email'     => $dataBarang->email,
-                    'password'  => $dataBarang->password,
+                    'password'  => Hash::make($dataBarang->password),
                     'tlp'       => $dataBarang->tlp,
                     'status'    => $dataBarang->status,
                     'wilayah'   => $dataBarang->wilayah,
@@ -144,11 +161,9 @@ class adminController extends Controller
 
     public function deleteKaryawan($id)
     {
-        DB::beginTransaction();
         $data = new User;
         // dd($data);
         $data->find($id)->delete();
-        DB::commit();
         return response()->json(['success' => 'Data berhasil dihapus']);
     }
 
@@ -227,6 +242,6 @@ class adminController extends Controller
         request()->session()->invalidate();
         request()->session()->regenerateToken();
 
-        return redirect()->intended('/loginAdmin');
+        return redirect('/admin');
     }
 }

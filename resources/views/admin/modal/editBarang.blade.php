@@ -50,13 +50,6 @@
                     </div>
                 </div>
 
-                <div class="mb-3 row">
-                    <label for="file" class="col-sm-4 col-form-label">Upload Gambar</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control file_up" id="file_up" value="">
-                    </div>
-                </div>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

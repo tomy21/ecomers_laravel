@@ -13,395 +13,79 @@
         <div class="swiper-button-next"></div>
         <div class="swiper-scrollbar"></div>
     </div>
-    <div class="promosi-product">
+    <div class="promosi-product" style="width:1500px">
         <h2>Promosi Product</h2>
         <div class="swipper swipperPromosi">
             <div class="swiper-wrapper">
-                <div class="card swiper-slide">
-                    <div class="card-head">
-                        <h1>Gambar product</h1>
+                @foreach ($promosi as $item)
+                    <div class="card swiper-slide">
+                        <div class="card-head">
+                            <img src="{{ asset('assets/images/product/' . $item->images . '') }}"
+                                style="width:100%; height:100%; border-radius:20px" alt="">
+                        </div>
+                        <h5>{{ $item->nama_barang }}</h5>
+                        <div class="card-body">
+                            @auth
+                                <p>Rp. {{ number_format($item->harga_barang) }}</p>
+                                <h3>Rp. {{ number_format($item->harga_barang - $item->harga_barang * 0.1) }}</h3>
+                            @else
+                                {{-- <p>Rp. {{ number_format($item->harga_barang) }}</p> --}}
+                                <h3>Rp. {{ number_format($item->harga_barang) }}</h3>
+                            @endauth
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <p>Rp.30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-                <div class="card swiper-slide">
-                    <div class="card-head">
-                        <h1>Gambar product</h1>
-                    </div>
-                    <div class="card-body">
-                        <p>Rp.30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-                <div class="card swiper-slide">
-                    <div class="card-head">
-                        <h1>Gambar product</h1>
-                    </div>
-                    <div class="card-body">
-                        <p>Rp.30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-                <div class="card swiper-slide">
-                    <div class="card-head">
-                        <h1>Gambar product</h1>
-                    </div>
-                    <div class="card-body">
-                        <p>Rp.30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-                <div class="card swiper-slide">
-                    <div class="card-head">
-                        <h1>Gambar product</h1>
-                    </div>
-                    <div class="card-body">
-                        <p>Rp.30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-                <div class="card swiper-slide">
-                    <div class="card-head">
-                        <h1>Gambar product</h1>
-                    </div>
-                    <div class="card-body">
-                        <p>Rp.30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-                <div class="card swiper-slide">
-                    <div class="card-head">
-                        <h1>Gambar product</h1>
-                    </div>
-                    <div class="card-body">
-                        <p>Rp.30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-                <div class="card swiper-slide">
-                    <div class="card-head">
-                        <h1>Gambar product</h1>
-                    </div>
-                    <div class="card-body">
-                        <p>Rp.30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
-    <div class="product-baru">
+    <div class="product-baru" style="width:1500px">
         <h2>Product Baru</h2>
         <div class="swipper swipperPromosi">
             <div class="swiper-wrapper">
-                <div class="card swiper-slide">
-                    <div class="card-head">
-                        <h1>Gambar product</h1>
+                @foreach ($new as $item)
+                    <div class="card swiper-slide">
+                        <div class="card-head">
+                            <img src="{{ asset('assets/images/product/' . $item->images . '') }}"
+                                style="width:100%; height:100%; border-radius:20px" alt="">
+                        </div>
+                        <h5>{{ $item->nama_barang }}</h5>
+                        <div class="card-body">
+                            @auth
+                                <p>Rp. {{ number_format($item->harga_barang) }}</p>
+                                <h3>Rp. {{ number_format($item->harga_barang - $item->harga_barang * 0.1) }}</h3>
+                            @else
+                                {{-- <p>Rp. {{ number_format($item->harga_barang) }}</p> --}}
+                                <h3>Rp. {{ number_format($item->harga_barang) }}</h3>
+                            @endauth
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <p>Rp.30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-                <div class="card swiper-slide">
-                    <div class="card-head">
-                        <h1>Gambar product</h1>
-                    </div>
-                    <div class="card-body">
-                        <p>Rp.30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-                <div class="card swiper-slide">
-                    <div class="card-head">
-                        <h1>Gambar product</h1>
-                    </div>
-                    <div class="card-body">
-                        <p>Rp.30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-                <div class="card swiper-slide">
-                    <div class="card-head">
-                        <h1>Gambar product</h1>
-                    </div>
-                    <div class="card-body">
-                        <p>Rp.30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-                <div class="card swiper-slide">
-                    <div class="card-head">
-                        <h1>Gambar product</h1>
-                    </div>
-                    <div class="card-body">
-                        <p>Rp.30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-                <div class="card swiper-slide">
-                    <div class="card-head">
-                        <h1>Gambar product</h1>
-                    </div>
-                    <div class="card-body">
-                        <p>Rp.30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-                <div class="card swiper-slide">
-                    <div class="card-head">
-                        <h1>Gambar product</h1>
-                    </div>
-                    <div class="card-body">
-                        <p>Rp.30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-                <div class="card swiper-slide">
-                    <div class="card-head">
-                        <h1>Gambar product</h1>
-                    </div>
-                    <div class="card-body">
-                        <p>Rp.30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="kategory-list">
-        <p>Kategory</p>
-        <div class="list-kategory">
-            <div class="card-kategory">
-                <div class="kategory-img">
-                    <div class="circle"></div>
-                    <p>gambar</p>
-                </div>
-                <div class="title-kategory">
-                    Bumbu Dapur
-                </div>
-            </div>
-            <div class="card-kategory">
-                <div class="kategory-img">
-                    <div class="circle"></div>
-                    <p>gambar</p>
-                </div>
-                <div class="title-kategory">
-                    Perlengkapan Mandi
-                </div>
-            </div>
-            <div class="card-kategory">
-                <div class="kategory-img">
-                    <div class="circle"></div>
-                    <p>gambar</p>
-                </div>
-                <div class="title-kategory">
-                    Minuman
-                </div>
-            </div>
-            <div class="card-kategory">
-                <div class="kategory-img">
-                    <div class="circle"></div>
-                    <p>gambar</p>
-                </div>
-                <div class="title-kategory">
-                    Makanan
-                </div>
-            </div>
-            <div class="card-kategory">
-                <div class="kategory-img">
-                    <div class="circle"></div>
-                    <p>gambar</p>
-                </div>
-                <div class="title-kategory">
-                    Snack
-                </div>
-            </div>
-            <div class="card-kategory">
-                <div class="kategory-img">
-                    <div class="circle"></div>
-                    <p>gambar</p>
-                </div>
-                <div class="title-kategory">
-                    Frozen Food
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
     <div class="product-list">
         <p>Product List</p>
         <div class="card-list-product">
-            <div class="card-list">
-                <div class="card-list-head">
-                    <p>gambar</p>
-                </div>
-                <div class="card-list-body">
-                    <p class="title">Pepsodent</p>
-                    <div class="harga">
-                        <p>Rp. 30.000</p>
-                        <h3>Rp. 10.000</h3>
+            @foreach ($allProduct as $item)
+                <div class="card-list">
+                    <div class="card-list-head">
+                        <img src="{{ asset('assets/images/product/' . $item->images . '') }}"
+                            style="width:100%; height:100%; border-radius:20px;" alt="">
+                    </div>
+                    <div class="card-list-body">
+                        <p class="title">{{ $item->nama_barang }}</p>
+                        <div class="harga">
+                            @auth
+                                <p>Rp. {{ number_format($item->harga_barang) }}</p>
+                                <h3>Rp. {{ number_format($item->harga_barang - $item->harga_barang * 0.1) }}</h3>
+                            @else
+                                {{-- <p>Rp. {{ number_format($item->harga_barang) }}</p> --}}
+                                <h3>Rp. {{ number_format($item->harga_barang) }}</h3>
+                            @endauth
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-list">
-                <div class="card-list-head">
-                    <p>gambar</p>
-                </div>
-                <div class="card-list-body">
-                    <p class="title">Pepsodent</p>
-                    <div class="harga">
-                        <p>Rp. 30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="card-list">
-                <div class="card-list-head">
-                    <p>gambar</p>
-                </div>
-                <div class="card-list-body">
-                    <p class="title">Pepsodent</p>
-                    <div class="harga">
-                        <p>Rp. 30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="card-list">
-                <div class="card-list-head">
-                    <p>gambar</p>
-                </div>
-                <div class="card-list-body">
-                    <p class="title">Pepsodent</p>
-                    <div class="harga">
-                        <p>Rp. 30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="card-list">
-                <div class="card-list-head">
-                    <p>gambar</p>
-                </div>
-                <div class="card-list-body">
-                    <p class="title">Pepsodent</p>
-                    <div class="harga">
-                        <p>Rp. 30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="card-list">
-                <div class="card-list-head">
-                    <p>gambar</p>
-                </div>
-                <div class="card-list-body">
-                    <p class="title">Pepsodent</p>
-                    <div class="harga">
-                        <p>Rp. 30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="card-list">
-                <div class="card-list-head">
-                    <p>gambar</p>
-                </div>
-                <div class="card-list-body">
-                    <p class="title">Pepsodent</p>
-                    <div class="harga">
-                        <p>Rp. 30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="card-list">
-                <div class="card-list-head">
-                    <p>gambar</p>
-                </div>
-                <div class="card-list-body">
-                    <p class="title">Pepsodent</p>
-                    <div class="harga">
-                        <p>Rp. 30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="card-list">
-                <div class="card-list-head">
-                    <p>gambar</p>
-                </div>
-                <div class="card-list-body">
-                    <p class="title">Pepsodent</p>
-                    <div class="harga">
-                        <p>Rp. 30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="card-list">
-                <div class="card-list-head">
-                    <p>gambar</p>
-                </div>
-                <div class="card-list-body">
-                    <p class="title">Pepsodent</p>
-                    <div class="harga">
-                        <p>Rp. 30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="card-list">
-                <div class="card-list-head">
-                    <p>gambar</p>
-                </div>
-                <div class="card-list-body">
-                    <p class="title">Pepsodent</p>
-                    <div class="harga">
-                        <p>Rp. 30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="card-list">
-                <div class="card-list-head">
-                    <p>gambar</p>
-                </div>
-                <div class="card-list-body">
-                    <p class="title">Pepsodent</p>
-                    <div class="harga">
-                        <p>Rp. 30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="card-list">
-                <div class="card-list-head">
-                    <p>gambar</p>
-                </div>
-                <div class="card-list-body">
-                    <p class="title">Pepsodent</p>
-                    <div class="harga">
-                        <p>Rp. 30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="card-list">
-                <div class="card-list-head">
-                    <p>gambar</p>
-                </div>
-                <div class="card-list-body">
-                    <p class="title">Pepsodent</p>
-                    <div class="harga">
-                        <p>Rp. 30.000</p>
-                        <h3>Rp. 10.000</h3>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
-
 @endsection
