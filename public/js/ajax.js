@@ -22,7 +22,7 @@ var swiper = new Swiper(".swiper", {
 });
 
 var swipper = new Swiper(".swipperPromosi", {
-    slidesPerView: 6,
+    slidesPerView: 4,
     spaceBetween: 30,
     freeMode: true,
 });

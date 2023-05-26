@@ -119,6 +119,6 @@ class GaleryController extends Controller
     {
         $data = new galery;
         $data->find($id)->delete();
-        return response()->json(['success' => 'Data berhasil dihapus']);
+        return redirect()->back()->with('success', 'Data berhasil dihapus.');
     }
 }

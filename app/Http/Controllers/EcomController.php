@@ -16,11 +16,13 @@ class EcomController extends Controller
     public function index()
     {
         $data = new DataBarang;
+        $galery = new galery;
         return view('ecommers.beranda', [
             'title' => 'Beranda',
             'allProduct' => $data::all(),
             'promosi' => $data::where('qty_keluar','<', 110)->where('qty_keluar', '>', 50)->get(),
             'new' => $data::where('qty_keluar','<', 10)->get(),
+            'benner' => $galery::where('name', 'Benner')->get(),
         ]);
     }
     public function galery()

@@ -7,7 +7,7 @@
             @foreach ($data as $x)
                 <div class="card-galery">
                     <div class="card-image">
-                        <img src="{{ asset('assets/images/galery/' . $x->image . '') }}" style="width:100%;border-radius:20px;"
+                        <img src="{{ asset('assets/images/galery/' . $x->image . '') }}" style="width:100%;height:70%;border-radius:20px;"
                             alt="">
                     </div>
                     <div class="card-title">

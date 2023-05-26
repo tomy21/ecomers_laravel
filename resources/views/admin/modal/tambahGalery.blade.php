@@ -12,15 +12,17 @@
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3 row">
-                        <label for="kegiatan" class="col-sm-4 col-form-label">Kegiatan atau Loker</label>
+                        <label for="kegiatan" class="col-sm-4 col-form-label">Description</label>
                         <div class="col-sm-8">
                             <select class="form-select @error('kegiatan') is-invalid @enderror" name="kegiatan"
                             id="kegiatan">
                             <option value="">Pilih </option>
                             <option value="Loker"> Loker </option>
                             <option value="Galery"> Galery </option>
+                            <option value="Benner"> Benner </option>
                         </select>
                     </div>
+                    
                     @error('kegiatan')
                     <div class="is-invalid">
                         {{ $message }}
@@ -46,6 +48,7 @@
                         <div class="col-sm-8">
                             <input type="file" class="form-control @error('image') is-invalid @enderror"
                                 name="image" id="image" required>
+                            <small style="font-style: italic; font-weight:700">Jika descriptionnya benner gambar harus ukuran 1349 x 434</small>
                         </div>
                         @error('image')
                             <div class="is-invalid">

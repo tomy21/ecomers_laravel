@@ -6,13 +6,15 @@
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Data Barang</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="formTambahBarang" action="{{route('admin.tambahDataBarang')}}" method="POST" enctype="multipart/form-data">
+            <form id="formTambahBarang" action="{{ route('admin.tambahDataBarang') }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3 row">
                         <label for="sku" class="col-sm-4 col-form-label">No SKU</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control sku" name="sku" id="sku">
+                            <input type="text" class="form-control sku" name="sku" id="sku"
+                                value="PDK-{{ Illuminate\Support\Str::random(6, "numberic") }}" readonly>
                         </div>
                     </div>
 

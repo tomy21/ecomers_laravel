@@ -24,7 +24,7 @@
                 </thead>
                 <tbody>
                     @foreach ($data as $x => $y)
-                    <tr class="align-middle text-center">
+                        <tr class="align-middle text-center">
                             <td>{{ ++$x }}</td>
                             <td>
                                 <img src="{{ asset('assets/images/galery/' . $y->image . '') }}"
@@ -34,20 +34,26 @@
                             <td>{{ $y->desc }}</td>
                             <td>{{ $y->created_at }}</td>
                             <td>
-                                <button class="btn btn-success" id="editGalery" onclick="editGalery({{$y->id}})">
+                                <button class="btn btn-success" id="editGalery" onclick="editGalery({{ $y->id }})">
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <button class="btn btn-danger" onclick="deleteGalery({{$y->id}})">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
+                                <form action="{{ route('admin.galeryDelete', $y->id) }}" method="POST" class="delete-form">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" type="submit" data-confirm="Apakah Anda yakin ingin menghapus data ini?">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </form>
+
                             </td>
                         </tr>
-                        @endforeach
+                    @endforeach
                 </tbody>
             </table>
         </div>
-    </div> 
+    </div>
 
     <div class="tambahGalery"></div>
     <div class="editGalery"></div>
+
 @endsection

@@ -127,9 +127,10 @@ section{
 }
 .card{
     display: flex;
-    width: 200px;
+    width: 50px;
+    min-width: 200px;
     max-width: 500px;
-    height: 550px;
+    height: 750px;
     /* flex-direction: column; */
     flex-wrap: wrap;
     gap: 10px;
@@ -225,7 +226,7 @@ footer{
 .card-list{
     display: flex;
     flex-direction: column;
-    width: 250px;
+    width: 300px;
     min-height: 350px;
     max-height: 750px;
     gap: 10px;
@@ -240,7 +241,7 @@ footer{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 40px;
+    gap: 50px;
 }
 .card-list-head{
     width: 100%;
@@ -283,7 +284,7 @@ footer{
 .card-galery-list{
     display: flex;
     flex-wrap: wrap;
-    gap: 72px;
+    gap: 53px;
 }
 .galery > h3 , .kontak-kami > h3, .karir > h3{
     margin-top: 30px;
@@ -354,7 +355,7 @@ footer{
 .card-karir-list{
     display: flex;
     flex-wrap: wrap;
-    gap: 70px;
+    gap: 53px;
 }
 .card-karir{
     width: 300px;

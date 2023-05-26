@@ -106,6 +106,7 @@ class UserController extends Controller
             'email'     => $request->email,
             'password'  => $request->password,
         ];
+        
 
         if(Auth::attempt($infoLogin)){
             Session::flash('success','Login berhasil');

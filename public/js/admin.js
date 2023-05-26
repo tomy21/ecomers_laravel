@@ -95,6 +95,20 @@ function simpan(id) {
 }
 
 function deleteData(id) {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+            setTimeout(function () {
+                window.location.reload();
+            }, 1000);
+        },
+    });
     Swal.fire({
         title: "Yakin akan hapus id " + id + " ?",
         text: "Jika sudah pilih iya saya yakin",
@@ -110,16 +124,10 @@ function deleteData(id) {
                 url: "delete/" + id,
                 success: function (response) {
                     if (response.success) {
-                        Swal.fire({
-                            position: "center",
+                        Toast.fire({
                             icon: "success",
-                            title: response.success,
-                            showConfirmButton: false,
-                            timer: 1500,
+                            title: "Data Berhasil diinput",
                         });
-                        setTimeout(function () {
-                            window.location.reload();
-                        }, 1510);
                     }
                 },
             });
@@ -149,7 +157,7 @@ $(".editDataKaryawan").click(function (e) {
             $(".name").val(response.result.name);
             $(".email").val(response.result.email);
             $(".tlp").val(response.result.tlp);
-            bcrypt.hashSync($(".password").val(response.result.password),10);
+            bcrypt.hashSync($(".password").val(response.result.password), 10);
             $("select#wilayah").val(response.result.wilayah);
             $("select#level").val(response.result.level);
             $("select#status").val(response.result.status);
@@ -293,6 +301,9 @@ function deleteDataKaryawan(id) {
         didOpen: (toast) => {
             toast.addEventListener("mouseenter", Swal.stopTimer);
             toast.addEventListener("mouseleave", Swal.resumeTimer);
+            setTimeout(function () {
+                window.location.reload();
+            }, 1000);
         },
     });
     Swal.fire({
@@ -310,13 +321,11 @@ function deleteDataKaryawan(id) {
                 url: "deleteKaryawan/" + id,
                 success: function (response) {
                     if (response.success) {
+                        $("#modalKaryawan").modal("hide");
                         Toast.fire({
                             icon: "success",
                             title: "Data Berhasil dihapus",
                         });
-                        setTimeout(function () {
-                            window.location.reload();
-                        }, 1510);
                     }
                 },
             });
@@ -477,7 +486,7 @@ function editGalery(id) {
     });
 }
 
-function deleteGalery(id) {
+document.addEventListener("click", function (event) {
     const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -489,34 +498,29 @@ function deleteGalery(id) {
             toast.addEventListener("mouseleave", Swal.resumeTimer);
         },
     });
-    Swal.fire({
-        title: "Yakin akan hapus id " + id + " ?",
-        text: "Jika sudah pilih iya saya yakin",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Iya, Saya yakin!",
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                type: "DELETE",
-                url: "galery/delete/" + id,
-                data: {
-                    id: id,
-                },
-                
-                success: function (response) {
-                    if (response.success) {
-                        Toast.fire({
-                            icon: "success",
-                            title: "Data Berhasil dihapus",
-                        });setTimeout(function () {
-                            location.reload();
-                        }, 1510);
-                    }
-                },
-            });
-        }
-    });
-}
+    if (event.target.matches('.delete-form button[type="submit"]')) {
+        event.preventDefault();
+
+        const form = event.target.closest(".delete-form");
+        const confirmMessage = event.target.dataset.confirm;
+
+        Swal.fire({
+            title: "Konfirmasi",
+            text: confirmMessage,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, Hapus",
+            cancelButtonText: "Batal",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+                Toast.fire({
+                    icon: "success",
+                    title: "Data Berhasil dihapus",
+                });
+            }
+        });
+    }
+});

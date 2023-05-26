@@ -21,7 +21,11 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                if ($guard === 'web') {
+                    return redirect()->route('dashboard')->with('error', 'Anda sudah login sebagai admin.');
+                } elseif ($guard === 'admin') {
+                    return redirect()->route('pelanggan')->with('error', 'Anda sudah login sebagai pelanggan.');
+                }
             }
         }
 

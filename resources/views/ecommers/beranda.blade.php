@@ -3,10 +3,9 @@
 @section('content')
     <div class="carousel swiper">
         <div class="swiper-wrapper">
-            <img class="swiper-slide" src="assets/images/benner1.png" alt="">
-            <img class="swiper-slide" src="assets/images/benner2.jpg" alt="">
-            <img class="swiper-slide" src="assets/images/benner3.png" alt="">
-            <img class="swiper-slide" src="assets/images/benner4.png" alt="">
+            @foreach ($benner as $item)
+            <img class="swiper-slide" src="{{asset('assets/images/galery/'.$item->image.'')}}" alt="">
+            @endforeach
         </div>
         <div class="swiper-pagination"></div>
         <div class="swiper-button-prev"></div>
@@ -18,7 +17,7 @@
         <div class="swipper swipperPromosi">
             <div class="swiper-wrapper">
                 @foreach ($promosi as $item)
-                    <div class="card swiper-slide">
+                <div class="card swiper-slide">
                         <div class="card-head">
                             <img src="{{ asset('assets/images/product/' . $item->images . '') }}"
                                 style="width:100%; height:100%; border-radius:20px" alt="">
@@ -34,9 +33,9 @@
                             @endauth
                         </div>
                     </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
-        </div>
     </div>
     <div class="product-baru" style="width:1500px">
         <h2>Product Baru</h2>

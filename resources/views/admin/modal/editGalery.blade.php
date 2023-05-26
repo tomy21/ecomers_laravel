@@ -20,6 +20,7 @@
                             <option value="">Pilih </option>
                             <option value="Loker" {{$name_galery == "Loker" ? "selected" : ""}}> Loker </option>
                             <option value="Galery" {{$name_galery == "Galery" ? "selected" : ""}}> Galery </option>
+                            <option value="Benner" {{$name_galery == "Benner" ? "selected" : ""}}> Benner </option>
                         </select>
                     </div>
                     @error('kegiatan')
