@@ -90,6 +90,7 @@ section{
 .content{
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     margin-bottom: 40vh;
 }
 .carousel{
@@ -128,10 +129,10 @@ section{
 .card{
     display: flex;
     width: 50px;
-    min-width: 200px;
+    min-width: 300px;
     max-width: 500px;
-    height: 750px;
-    /* flex-direction: column; */
+    height: 50px;
+    /* align-items: stretch; */
     flex-wrap: wrap;
     gap: 10px;
     border-radius: 10px;
@@ -140,7 +141,7 @@ section{
 }
 .card-head{
     width: 95%;
-    height: 95%;
+    height: 300px;
     background-color: #fff;
     margin: auto;
     margin-top: 10px;

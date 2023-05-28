@@ -58,7 +58,7 @@ class DataBarangController extends Controller
             if ($request->hasFile('image')) {
                 $photo = $request->file('image');
                 $filename = time() . '.' . $photo->getClientOriginalExtension();
-                $photo->move(public_path('assets/images/product'), $filename);
+                $photo->move(public_path('storage'), $filename);
                 $data->images = $filename;
             }
 

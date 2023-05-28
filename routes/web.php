@@ -5,6 +5,7 @@ use App\Http\Controllers\EcomController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DataBarangController;
 use App\Http\Controllers\GaleryController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/storage', function () {
+    Artisan::call('storage:link');
+});
 
 Route::GET('/admin', [adminController::class, 'loginAdmin'])->name('admin.login');
 Route::POST('/admin/loginAdminProses', [adminController::class, 'loginAdminProses'])->name('admin.proseslogin');

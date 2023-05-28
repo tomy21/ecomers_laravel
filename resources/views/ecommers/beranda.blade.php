@@ -19,7 +19,7 @@
                 @foreach ($promosi as $item)
                 <div class="card swiper-slide">
                         <div class="card-head">
-                            <img src="{{ asset('assets/images/product/' . $item->images . '') }}"
+                            <img src="{{ url('assets/images/product/' . $item->images . '') }}"
                                 style="width:100%; height:100%; border-radius:20px" alt="">
                         </div>
                         <h5>{{ $item->nama_barang }}</h5>

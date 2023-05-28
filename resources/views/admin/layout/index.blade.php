@@ -115,7 +115,7 @@
                 <i class="fas fa-bars"></i>
             </button>
             <div class="d-flex align-items-center  gap-3 p-0 justify-content-center">
-                <img src="{{ asset('assets/images/user/'. auth()->user()->images.'') }}" style="width:50px;border-radius:50%;"
+                <img src="{{ url('assets/images/user/'. auth()->user()->images) }}" style="width:50px;border-radius:50%;"
                     alt="foto profil">
                 <div class="d-flex flex-column p-0">
                     <h6 style="margin:0;">{{ auth()->user()->name }}</h6>
@@ -130,7 +130,6 @@
 </body>
 <script src="{{ asset('js/app-d4b42df8.js') }}"></script>
 <script src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
-{{-- <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script> --}}
 <script src="{{ asset('js/jqueryMigrate-1.2.1.min.js') }}"></script>
 <script src="{{ asset('js/admin.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
